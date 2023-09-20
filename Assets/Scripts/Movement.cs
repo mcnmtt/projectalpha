@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float velocita = 5.0f; // Velocità di movimento della sfera
-    public float forzaSalto = 10.0f; // Forza del salto
-    private Rigidbody rb;
+    [SerializeField] private float speed = 5.0f;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        
     }
 
     void Update()
@@ -18,7 +16,7 @@ public class Movement : MonoBehaviour
         // Ottieni l'input dall'asse orizzontale (tasti freccia sinistra e destra)
         float movimentoOrizzontale = Input.GetAxis("Horizontal");
 
-        // Calcola la forza da applicare per il movimento orizzontale
+        // Calcola la forza da applicare per il movimento orizzontale s
         Vector3 forzaMovimento = new Vector3(movimentoOrizzontale * velocita, 0, 0);
 
         float movimentoAvanti = Input.GetAxis("Vertical");
