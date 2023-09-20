@@ -5,32 +5,50 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float jumpForce = 5.0f;
+    private Rigidbody rigidBody;
 
     void Start()
     {
-        
+        //Assign RigidBody to rigidbody
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        // Ottieni l'input dall'asse orizzontale (tasti freccia sinistra e destra)
-        float movimentoOrizzontale = Input.GetAxis("Horizontal");
 
-        // Calcola la forza da applicare per il movimento orizzontale s
-        Vector3 forzaMovimento = new Vector3(movimentoOrizzontale * velocita, 0, 0);
+        Vector3 shift = new Vector3(0, 0, 0);
 
-        float movimentoAvanti = Input.GetAxis("Vertical");
-
-        Vector3 forzaAvanti = new Vector3(0, 0, movimentoAvanti * velocita);
-
-        // Applica la forza al Rigidbody per il movimento orizzontale
-        rb.AddForce(forzaMovimento);
-        rb.AddForce(forzaAvanti);
-
-        // Se il giocatore preme il tasto di salto (spazio), applica una forza verso l'alto
-        if (Input.GetButtonDown("Jump"))
-        {
-            rb.AddForce(Vector3.up * forzaSalto, ForceMode.Impulse);
+        //W key input
+        if (Input.GetKey(KeyCode.W)){
+            shift.z = +1;
         }
+
+        //S key input
+        if (Input.GetKey(KeyCode.S)){
+            shift.z = -1;
+        }
+
+
+        //A key input
+        if (Input.GetKey(KeyCode.A)){
+            shift.x = -1;
+        }
+
+        //D key input
+        if (Input.GetKey(KeyCode.D)){
+            shift.x = +1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)){
+            shift.y = +1;
+
+            rigidBody.AddForce(shift * jumpForce, ForceMode.Impulse);
+        }
+
+        //Movimento del personaggio
+        transform.position += shift * speed * Time.deltaTime;
+
+        transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 }
