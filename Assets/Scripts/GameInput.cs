@@ -20,4 +20,11 @@ public class GameInput : MonoBehaviour
 
         return moveDir;
     }
+
+    public Vector2 CheckRun()
+    {
+        Vector2 run = playerInputs.Player.Run.ReadValue<Vector2>();
+
+        return run;
+    }
 }
