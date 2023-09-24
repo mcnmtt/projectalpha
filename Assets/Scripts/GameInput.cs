@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine; 
+using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
@@ -16,7 +16,6 @@ public class GameInput : MonoBehaviour
     {
         Vector3 moveDir = playerInputs.Player.Move.ReadValue<Vector3>();
 
-        moveDir.y = 0;
         moveDir = moveDir.normalized;
 
         return moveDir;
@@ -27,15 +26,5 @@ public class GameInput : MonoBehaviour
         Vector2 run = playerInputs.Player.Run.ReadValue<Vector2>();
 
         return run;
-    }
-
-    public Vector3 GetJump()
-    {
-        Vector3 jump = playerInputs.Player.Move.ReadValue<Vector3>();
-
-        jump.x = 0;
-        jump.z = 0;
-
-        return jump;
     }
 }
