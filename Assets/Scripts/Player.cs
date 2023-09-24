@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 2.0f;
     [SerializeField] private float runSpeed = 5.0f;
-    [SerializeField] private float jumpForce = 2.0f;
     [SerializeField] private GameInput gameInput;
     private bool isWalking;
     private bool isRunning;
